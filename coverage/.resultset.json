@@ -246,6 +246,10 @@
         "lines": [
           1,
           1,
+          1,
+          1,
+          1,
+          1,
           null
         ]
       },
@@ -262,11 +266,27 @@
           null,
           1,
           1,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          null,
           null
         ]
       },
       "/Users/kdhubbard/mod_4/projects/tea_to_you_api/app/models/subscription.rb": {
         "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           1,
           1,
           null
@@ -278,11 +298,31 @@
           null,
           1,
           1,
+          2,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          null,
           null
         ]
       },
       "/Users/kdhubbard/mod_4/projects/tea_to_you_api/app/models/tea.rb": {
         "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           1,
           null
         ]
@@ -293,6 +333,9 @@
           null,
           1,
           1,
+          2,
+          2,
+          null,
           null
         ]
       },
@@ -301,10 +344,11 @@
           1,
           1,
           1,
+          null,
           null
         ]
       }
     },
-    "timestamp": 1695160235
+    "timestamp": 1695226439
   }
 }
