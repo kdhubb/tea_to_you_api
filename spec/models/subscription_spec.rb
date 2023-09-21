@@ -44,5 +44,15 @@ RSpec.describe Subscription, type: :model do
       expect(@sub_2.teas.count).to eq(2)
       expect(@sub_2.teas).to match_array([@tea_1, @tea_2])
     end
+
+    it "#update_status" do 
+      expect(@sub_1.status).to eq("active")
+      @sub_1.update_status("cancelled")
+      expect(@sub_1.status).to eq("cancelled")
+      @sub_1.update_status("inactive")
+      expect(@sub_1.status).to eq("inactive")
+      @sub_1.update_status("active")
+      expect(@sub_1.status).to eq("active")
+    end
   end
 end
