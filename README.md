@@ -74,3 +74,42 @@ JSON Body:
   "customer_id":"integer"
 }
 ```
+Example response:
+```
+{
+  "data":[
+    {
+      "id":"integer",
+      "type":"subscription",
+      "attributes": {
+        "customer_id":"integer",
+        "title":"string",
+        "price":"float",
+        "status":"active",
+        "frequency":"string"
+        "teas": [
+          tea_id,
+          tea_id,
+          tea_id
+        ] 
+      }
+    },
+    {
+      "id":"integer",
+      "type":"subscription",
+      "attributes": {
+        "customer_id":"integer",
+        "title":"string",
+        "price":"float",
+        "status":"active",
+        "frequency":"string"
+        "teas": [
+          tea_id,
+          tea_id,
+          tea_id
+        ] 
+      }
+    }
+  ]
+}
+```
