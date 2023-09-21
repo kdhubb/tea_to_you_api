@@ -30,7 +30,9 @@ RSpec.describe 'Cancel Subscription', type: :request do
       patch api_v1_subscription_path(@sub_1), params: subscription_params
 
       parsed = JSON.parse(response.body, symbolize_names: true)
+
       @sub_1.reload
+      
       expect(@sub_1.status).to eq("cancelled")
       expect(response.code).to eq('200')
       expect(parsed[:data][:id]).to eq("#{@sub_1.id}")
@@ -41,29 +43,6 @@ RSpec.describe 'Cancel Subscription', type: :request do
       expect(parsed[:data][:attributes][:status]).to eq("cancelled")
       expect(parsed[:data][:attributes][:frequency]).to eq(@sub_1.frequency)
       expect(parsed[:data][:attributes][:teas]).to eq(@sub_1.tea_list)
-    end
-
-    it "new subscription sad path" do
-      subscription_params = {
-        customer_id: @customer_1.id,
-        title: "Test Subscription 1",
-        price: 15.00,
-        teas: [
-          {
-            tea_id: @tea_1.id
-          },
-          {
-            tea_id: @tea_2.id
-          }
-        ] 
-      }
-      post api_v1_subscriptions_path, params: subscription_params
-
-      parsed = JSON.parse(response.body, symbolize_names: true)
-
-      expect(response.code).to eq("400")
-      expect(parsed[:errors].first[:status]).to eq("400")
-      expect(parsed[:errors].first[:title]).to eq("Frequency can't be blank")
     end
   end
 end
