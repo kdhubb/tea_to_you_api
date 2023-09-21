@@ -16,4 +16,11 @@ class Subscription < ApplicationRecord
       list_item
     end
   end
+
+  def save_teas(teas)
+    teas.each do |tea|
+      tea_object = Tea.find(tea[:tea_id])
+      TeaSubscription.create!(subscription: self, tea: tea_object)
+    end
+  end
 end

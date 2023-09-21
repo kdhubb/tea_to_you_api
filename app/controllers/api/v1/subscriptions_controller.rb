@@ -8,7 +8,14 @@ class Api::V1::SubscriptionsController < ApplicationController
   end
 
   def create
-
+    customer = Customer.find(params[:customer_id])
+    if customer
+      subscription = customer.subscriptions.new(subscription_params)
+      if subscription.save
+        subscription.save_teas(params[:teas])
+        render json: SubscriptionSerializer.new(subscription)
+      end
+    end
   end
 
   def update
