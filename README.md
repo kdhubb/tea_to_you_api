@@ -39,7 +39,7 @@ Example response:
 }
 ```
 
---
+---
 
 Cancel a customer's tea subscription
 
@@ -63,6 +63,7 @@ Example response:
   }
 }
 ```
+---
 
 See all of a customer's subscriptions
 
