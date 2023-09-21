@@ -36,5 +36,12 @@ RSpec.describe "Subscriptions Index", type: :request do
       expect(parsed[:data].first[:attributes][:teas].first[:tea_id]).to eq(@tea_1.id)
       expect(parsed[:data].count).to eq(2)
     end
+
+    it "get all customer's subscriptions sad path" do
+      subscription_params = {customer_id: @customer_1.id }
+      get api_v1_subscriptions_path, params: subscription_params
+
+      parsed = JSON.parse(response.body, symbolize_names: true)
+    end
   end
 end
