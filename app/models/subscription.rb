@@ -10,7 +10,7 @@ class Subscription < ApplicationRecord
   enum :status, { inactive: 0, active: 1 }
 
   def tea_list
-    list = teas.map do |tea|
+    teas.map do |tea|
       list_item = Hash.new
       list_item[:tea_id] = tea.id
       list_item
