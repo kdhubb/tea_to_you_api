@@ -6,6 +6,7 @@ class Api::V1::SubscriptionsController < ApplicationController
       render json: SubscriptionsSerializer.new(customer.subscriptions)
     else
       render json: { error: "customer not found" }
+    end
   end
 
   def create

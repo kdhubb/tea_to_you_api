@@ -8,7 +8,6 @@ class SubscriptionsSerializer
              :status,
              :frequency
   attribute :teas do |object|
-    object.teas.each do |tea|
-      tea.id
-    end
+    object.tea_list
+  end
 end
