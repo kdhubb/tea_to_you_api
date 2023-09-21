@@ -1,46 +1,46 @@
 require 'rails_helper'
 
-RSpec.describe 'New Subscription', type: :request do
-  describe "subscribe a customer to a new subscription" do
+RSpec.describe 'Cancel Subscription', type: :request do
+  describe "cancel a customer's subscription" do
     before(:each) do
       @customer_1 = Customer.create!(first_name: 'Wolfie', last_name: 'Von Wiggles', email: 'wolfie@email.com',
                                      address: 'address')
-      
+      @sub_1 = @customer_1.subscriptions.create!(title: 'Best Tea Ever', price: 20.0, frequency: 'monthly')
+      @sub_2 = @customer_1.subscriptions.create!(title: 'Tea for Mom', price: 18.0, frequency: 'monthly')
       @tea_1 = Tea.create!(title: 'Rose Green', description: 'Delicate floral', temperature: 130, brew_time: 4.0)
       @tea_2 = Tea.create!(title: 'Green Jasmine', description: 'Classic floral', temperature: 130, brew_time: 3.5)
       @tea_3 = Tea.create!(title: 'Sencha', description: 'Woody green', temperature: 130, brew_time: 4.0)
       @tea_5 = Tea.create!(title: 'Earl Grey', description: 'Floral intense black tea', temperature: 200,
                            brew_time: 5.0)
       @tea_7 = Tea.create!(title: 'Rooibos Chai', description: 'Relaxing dessert tea', temperature: 150, brew_time: 5.0)
+      TeaSubscription.create!(subscription: @sub_1, tea: @tea_1)
+      TeaSubscription.create!(subscription: @sub_1, tea: @tea_2)
+      TeaSubscription.create!(subscription: @sub_1, tea: @tea_5)
+      TeaSubscription.create!(subscription: @sub_2, tea: @tea_1)
+      TeaSubscription.create!(subscription: @sub_2, tea: @tea_3)
+      TeaSubscription.create!(subscription: @sub_2, tea: @tea_7)
     end
-    it "can create a new subscription" do
+    it "can cancel a subscription" do
+      expect(@sub_1.status).to eq("active")
+
       subscription_params = {
         customer_id: @customer_1.id,
-        title: "Test Subscription 1",
-        price: 15.00,
-        frequency: "monthly",
-        teas: [
-          {
-            tea_id: @tea_1.id
-          },
-          {
-            tea_id: @tea_2.id
-          }
-        ] 
+        status: "cancelled"
       }
-      post api_v1_subscriptions_path, params: subscription_params
+      patch api_v1_subscription_path(@sub_1), params: subscription_params
 
       parsed = JSON.parse(response.body, symbolize_names: true)
-
+      @sub_1.reload
+      expect(@sub_1.status).to eq("cancelled")
       expect(response.code).to eq('200')
-      expect(parsed[:data][:id]).to eq("#{Subscription.last.id}")
+      expect(parsed[:data][:id]).to eq("#{@sub_1.id}")
       expect(parsed[:data][:type]).to eq("subscription")
       expect(parsed[:data][:attributes][:customer_id]).to eq(@customer_1.id)
-      expect(parsed[:data][:attributes][:title]).to eq(subscription_params[:title])
-      expect(parsed[:data][:attributes][:price]).to eq(subscription_params[:price])
-      expect(parsed[:data][:attributes][:status]).to eq("active")
-      expect(parsed[:data][:attributes][:frequency]).to eq(subscription_params[:frequency])
-      expect(parsed[:data][:attributes][:teas]).to eq(subscription_params[:teas])
+      expect(parsed[:data][:attributes][:title]).to eq(@sub_1.title)
+      expect(parsed[:data][:attributes][:price]).to eq(@sub_1.price)
+      expect(parsed[:data][:attributes][:status]).to eq("cancelled")
+      expect(parsed[:data][:attributes][:frequency]).to eq(@sub_1.frequency)
+      expect(parsed[:data][:attributes][:teas]).to eq(@sub_1.tea_list)
     end
 
     it "new subscription sad path" do
