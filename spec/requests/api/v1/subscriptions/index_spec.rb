@@ -38,10 +38,14 @@ RSpec.describe "Subscriptions Index", type: :request do
     end
 
     it "get all customer's subscriptions sad path" do
-      subscription_params = {customer_id: @customer_1.id }
+      subscription_params = {customer_id: 3 }
       get api_v1_subscriptions_path, params: subscription_params
 
       parsed = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.code).to eq("404")
+      expect(parsed[:errors].first[:status]).to eq("404")
+      expect(parsed[:errors].first[:title]).to eq("Couldn't find Customer with 'id'=3")
     end
   end
 end
