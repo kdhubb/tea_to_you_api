@@ -49,12 +49,13 @@ Example response:
 
 Cancel a customer's tea subscription
 
-PATCH '/api/v1/subscriptions'
+PATCH '/api/v1/subscriptions/id'
+
+*(The id in the route above is the subscription id)*
 
 JSON Body:
 ```
 {
-  "subscription_id":"integer",
   "customer_id":"integer",
   "status":"cancelled"
 }

@@ -23,7 +23,7 @@ class Api::V1::SubscriptionsController < ApplicationController
     customer = Customer.find(params[:customer_id])
     return unless customer
 
-    subscription = Subscription.find(params[:subscription_id])
+    subscription = Subscription.find(params[:id])
     subscription.update_status(params[:status])
     render json: SubscriptionSerializer.new(subscription)
   end
