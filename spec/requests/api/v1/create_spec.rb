@@ -43,15 +43,27 @@ RSpec.describe 'New Subscription', type: :request do
       expect(parsed[:data][:attributes][:teas]).to eq(subscription_params[:teas])
     end
 
-    it "get all customer's subscriptions sad path" do
-      subscription_params = { customer_id: 3 }
-      get api_v1_subscriptions_path, params: subscription_params
+    it "new subscription sad path" do
+      subscription_params = {
+        customer_id: @customer_1.id,
+        title: "Test Subscription 1",
+        price: 15.00,
+        teas: [
+          {
+            tea_id: @tea_1.id
+          },
+          {
+            tea_id: @tea_2.id
+          }
+        ] 
+      }
+      post api_v1_subscriptions_path, params: subscription_params
 
       parsed = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response.code).to eq('404')
-      expect(parsed[:errors].first[:status]).to eq('404')
-      expect(parsed[:errors].first[:title]).to eq("Couldn't find Customer with 'id'=3")
+      expect(response.code).to eq("400")
+      expect(parsed[:errors].first[:status]).to eq("400")
+      expect(parsed[:errors].first[:title]).to eq("Frequency can't be blank")
     end
   end
 end
