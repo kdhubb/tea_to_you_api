@@ -1,7 +1,7 @@
 class Api::V1::SubscriptionsController < ApplicationController
 
   def index
-
+    
   end
 
   def create
@@ -9,6 +9,6 @@ class Api::V1::SubscriptionsController < ApplicationController
   end
 
   def destroy
-    
+
   end
 end
