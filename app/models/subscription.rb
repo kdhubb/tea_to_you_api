@@ -23,4 +23,14 @@ class Subscription < ApplicationRecord
       TeaSubscription.create!(subscription: self, tea: tea_object)
     end
   end
+
+  def update_status(status)
+    if status == "cancelled"
+      cancelled!
+    elsif status == "active"
+      active!
+    elsif status == "inactive"
+      inactive!
+    end
+  end
 end

@@ -62,11 +62,25 @@ JSON Body:
 Example response:
 ```
 {
-  "data": {
-    "subscription_id":"integer",
-    "customer_id":"integer",
-    "status":"cancelled"
-  }
+    "data": {
+        "id": "27",
+        "type": "subscription",
+        "attributes": {
+            "customer_id": 115,
+            "title": "Grandma's Tea",
+            "price": 17.0,
+            "status": "cancelled",
+            "frequency": "monthly",
+            "teas": [
+                {
+                    "tea_id": 14
+                },
+                {
+                    "tea_id": 8
+                }
+            ]
+        }
+    }
 }
 ```
 ---
