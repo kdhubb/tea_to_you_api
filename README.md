@@ -1,24 +1,35 @@
-# README
+## JSON Contract 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Subscribe a customer to a tea subscription
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+POST '/api/v1/subscriptions'
+JSON Body: 
+```
+{
+  "customer_id":"integer",
+  "title":"string",
+  "price":"float",
+  "frequency":"string" 
+}
+```
+Example response: 
+```
+{
+  "data": {
+    "id":"integer",
+    "type":"subscription",
+    "attributes": {
+      "customer_id":"integer",
+      "title":"string",
+      "price":"float",
+      "status":"integer",
+      "frequency":"string"
+      "teas": [
+        "title":"string",
+        "title":"string",
+        "title":"string"
+      ]
+    }
+  }
+}
+```
