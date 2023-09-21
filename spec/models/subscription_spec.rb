@@ -27,6 +27,7 @@ RSpec.describe Subscription, type: :model do
       TeaSubscription.create!(subscription: @sub_1, tea: @tea_2)
       TeaSubscription.create!(subscription: @sub_1, tea: @tea_5)
     end
+    
     it "#tea_list" do 
       expected_1 = [{:tea_id=>@tea_1.id}, {:tea_id=>@tea_2.id}, {:tea_id=>@tea_5.id}]
       expected_2 = []
