@@ -34,5 +34,15 @@ RSpec.describe Subscription, type: :model do
       expect(@sub_1.tea_list).to eq(expected_1)
       expect(@sub_2.tea_list).to eq(expected_2)
     end
+
+    it "#save_teas" do 
+      teas = [ {tea_id: @tea_1.id}, {tea_id: @tea_2.id}]
+
+      expect(@sub_2.teas.count).to eq(0)
+      @sub_2.save_teas(teas)
+
+      expect(@sub_2.teas.count).to eq(2)
+      expect(@sub_2.teas).to match_array([@tea_1, @tea_2])
+    end
   end
 end
