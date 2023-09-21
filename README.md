@@ -11,9 +11,12 @@ JSON Body:
   "price":"float",
   "frequency":"string",
   "teas": [
-    tea_id,
-    tea_id,
-    tea_id
+    {
+      "tea_id":"integer"
+    },
+    {
+      "tea_id":"integer"
+    }
   ] 
 }
 ```
@@ -30,9 +33,12 @@ Example response:
       "status":"active",
       "frequency":"string"
       "teas": [
-        tea_id,
-        tea_id,
-        tea_id
+        {
+          "tea_id":"integer"
+        },
+        {
+          "tea_id":"integer"
+        }
       ] 
     }
   }
