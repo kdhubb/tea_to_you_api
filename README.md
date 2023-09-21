@@ -56,7 +56,7 @@ JSON Body:
 {
   "subscription_id":"integer",
   "customer_id":"integer",
-  "status":"inactive"
+  "status":"cancelled"
 }
 ```
 Example response:
@@ -65,7 +65,7 @@ Example response:
   "data": {
     "subscription_id":"integer",
     "customer_id":"integer",
-    "status":"inactive"
+    "status":"cancelled"
   }
 }
 ```

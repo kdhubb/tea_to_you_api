@@ -7,7 +7,7 @@ class Subscription < ApplicationRecord
   validates :price, numericality: true
   validates :status, presence: true
   validates :frequency, presence: true
-  enum :status, { inactive: 0, active: 1 }
+  enum :status, { inactive: 0, active: 1, cancelled: 3 }
 
   def tea_list
     teas.map do |tea|
