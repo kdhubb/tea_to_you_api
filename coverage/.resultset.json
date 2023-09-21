@@ -177,23 +177,14 @@
           null
         ]
       },
-      "/Users/kdhubbard/mod_4/projects/tea_to_you_api/spec/factories/add_customer_to_subscriptions.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          null,
-          null
-        ]
-      },
       "/Users/kdhubbard/mod_4/projects/tea_to_you_api/spec/factories/customers.rb": {
         "lines": [
           1,
           1,
-          1,
-          1,
-          1,
-          1,
+          51,
+          51,
+          51,
+          51,
           null,
           null
         ]
@@ -349,6 +340,6 @@
         ]
       }
     },
-    "timestamp": 1695226439
+    "timestamp": 1695229071
   }
 }
