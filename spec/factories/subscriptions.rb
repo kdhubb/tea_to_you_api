@@ -3,6 +3,6 @@ FactoryBot.define do
     title { Faker::TvShows::StarTrek.location }
     price { 1.5 }
     status { 1 }
-    frequency { "MyText" }
+    frequency { 'MyText' }
   end
 end

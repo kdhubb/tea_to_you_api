@@ -11,7 +11,7 @@ class Subscription < ApplicationRecord
 
   def tea_list
     teas.map do |tea|
-      list_item = Hash.new
+      list_item = {}
       list_item[:tea_id] = tea.id
       list_item
     end
@@ -25,11 +25,11 @@ class Subscription < ApplicationRecord
   end
 
   def update_status(status)
-    if status == "cancelled"
+    if status == 'cancelled'
       cancelled!
-    elsif status == "active"
+    elsif status == 'active'
       active!
-    elsif status == "inactive"
+    elsif status == 'inactive'
       inactive!
     end
   end

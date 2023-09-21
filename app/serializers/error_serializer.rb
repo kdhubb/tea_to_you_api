@@ -1,5 +1,4 @@
 class ErrorSerializer
-
   def initialize(error)
     @error = error
   end
@@ -13,7 +12,7 @@ class ErrorSerializer
         }
       ]
     }
-  end 
+  end
 
   def bad_request
     {
