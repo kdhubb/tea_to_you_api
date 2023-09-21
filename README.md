@@ -1,24 +1,121 @@
-# README
+## JSON Contract 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Subscribe a customer to a tea subscription
 
-Things you may want to cover:
+POST '/api/v1/subscriptions'
+JSON Body: 
+```
+{
+  "customer_id":"integer",
+  "title":"string",
+  "price":"float",
+  "frequency":"string",
+  "teas": [
+    tea_id,
+    tea_id,
+    tea_id
+  ] 
+}
+```
+Example response: 
+```
+{
+  "data": {
+    "id":"integer",
+    "type":"subscription",
+    "attributes": {
+      "customer_id":"integer",
+      "title":"string",
+      "price":"float",
+      "status":"active",
+      "frequency":"string"
+      "teas": [
+        tea_id,
+        tea_id,
+        tea_id
+      ] 
+    }
+  }
+}
+```
 
-* Ruby version
+--
 
-* System dependencies
+Cancel a customer's tea subscription
 
-* Configuration
+PATCH '/api/v1/subscriptions'
 
-* Database creation
+JSON Body:
+```
+{
+  "subscription_id":"integer",
+  "customer_id":"integer",
+  "status":"inactive"
+}
+```
+Example response:
+```
+{
+  "data": {
+    "subscription_id":"integer",
+    "customer_id":"integer",
+    "status":"inactive"
+  }
+}
+```
 
-* Database initialization
+See all of a customer's subscriptions
 
-* How to run the test suite
+GET '/api/v1/subscriptions'
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+JSON Body: 
+```
+{
+  "customer_id":"integer"
+}
+```
+Example response:
+```
+{
+  "data":[
+    {
+      "id":"integer",
+      "type":"subscription",
+      "attributes": {
+        "customer_id":"integer",
+        "title":"string",
+        "price":"float",
+        "status":"active",
+        "frequency":"string"
+        "teas": [
+          {
+            "tea_id":"integer"
+          },
+          {
+            "tea_id":"integer"
+          }
+        ] 
+      }
+    },
+    {
+      "id":"integer",
+      "type":"subscription",
+      "attributes": {
+        "customer_id":"integer",
+        "title":"string",
+        "price":"float",
+        "status":"active",
+        "frequency":"string"
+        "teas": [
+          {
+            "tea_id":"integer"
+          },
+          {
+            "tea_id":"integer"
+          }
+        ] 
+      }
+    }
+  ]
+}
+```
