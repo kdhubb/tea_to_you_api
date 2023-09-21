@@ -9,6 +9,6 @@ class SubscriptionsSerializer
              :frequency
   attribute :teas do |object|
     object.teas.each do |tea|
-      tea.title
+      tea.id
     end
 end

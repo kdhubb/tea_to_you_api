@@ -9,7 +9,12 @@ JSON Body:
   "customer_id":"integer",
   "title":"string",
   "price":"float",
-  "frequency":"string" 
+  "frequency":"string",
+  "teas": [
+    tea_id,
+    tea_id,
+    tea_id
+  ] 
 }
 ```
 Example response: 
@@ -25,19 +30,21 @@ Example response:
       "status":"active",
       "frequency":"string"
       "teas": [
-        "title":"string",
-        "title":"string",
-        "title":"string"
-      ]
+        tea_id,
+        tea_id,
+        tea_id
+      ] 
     }
   }
 }
 ```
 
 --
+
 Cancel a customer's tea subscription
 
 PATCH '/api/v1/subscriptions'
+
 JSON Body:
 ```
 {
@@ -54,5 +61,16 @@ Example response:
     "customer_id":"integer",
     "status":"inactive"
   }
+}
+```
+
+See all of a customer's subscriptions
+
+GET '/api/v1/subscriptions'
+
+JSON Body: 
+```
+{
+  "customer_id":"integer"
 }
 ```
