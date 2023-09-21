@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Subscriptions Index', type: :request do
-  describe "get all a customer's tea subscriptions" do
+RSpec.describe 'Cancel Subscription', type: :request do
+  describe "cancel a customer's subscription" do
     before(:each) do
       @customer_1 = Customer.create!(first_name: 'Wolfie', last_name: 'Von Wiggles', email: 'wolfie@email.com',
                                      address: 'address')
@@ -20,34 +20,29 @@ RSpec.describe 'Subscriptions Index', type: :request do
       TeaSubscription.create!(subscription: @sub_2, tea: @tea_3)
       TeaSubscription.create!(subscription: @sub_2, tea: @tea_7)
     end
-    it "can get all customer's subscriptions happy path" do
-      subscription_params = { customer_id: @customer_1.id }
-      get api_v1_subscriptions_path, params: subscription_params
+    it "can cancel a subscription" do
+      expect(@sub_1.status).to eq("active")
+
+      subscription_params = {
+        customer_id: @customer_1.id,
+        status: "cancelled"
+      }
+      patch api_v1_subscription_path(@sub_1), params: subscription_params
 
       parsed = JSON.parse(response.body, symbolize_names: true)
 
+      @sub_1.reload
+      
+      expect(@sub_1.status).to eq("cancelled")
       expect(response.code).to eq('200')
-      expect(parsed[:data].first[:id]).to eq("#{@sub_1.id}")
-      expect(parsed[:data].first[:type]).to eq('subscription')
-      expect(parsed[:data].first[:attributes][:customer_id]).to eq(@customer_1.id)
-      expect(parsed[:data].first[:attributes][:title]).to eq("#{@sub_1.title}")
-      expect(parsed[:data].first[:attributes][:price]).to eq(@sub_1.price)
-      expect(parsed[:data].first[:attributes][:status]).to eq("#{@sub_1.status}")
-      expect(parsed[:data].first[:attributes][:frequency]).to eq("#{@sub_1.frequency}")
-      expect(parsed[:data].first[:attributes][:teas]).to be_an(Array)
-      expect(parsed[:data].first[:attributes][:teas].first[:tea_id]).to eq(@tea_1.id)
-      expect(parsed[:data].count).to eq(2)
-    end
-
-    it "get all customer's subscriptions sad path" do
-      subscription_params = { customer_id: 3 }
-      get api_v1_subscriptions_path, params: subscription_params
-
-      parsed = JSON.parse(response.body, symbolize_names: true)
-
-      expect(response.code).to eq('404')
-      expect(parsed[:errors].first[:status]).to eq('404')
-      expect(parsed[:errors].first[:title]).to eq("Couldn't find Customer with 'id'=3")
+      expect(parsed[:data][:id]).to eq("#{@sub_1.id}")
+      expect(parsed[:data][:type]).to eq("subscription")
+      expect(parsed[:data][:attributes][:customer_id]).to eq(@customer_1.id)
+      expect(parsed[:data][:attributes][:title]).to eq(@sub_1.title)
+      expect(parsed[:data][:attributes][:price]).to eq(@sub_1.price)
+      expect(parsed[:data][:attributes][:status]).to eq("cancelled")
+      expect(parsed[:data][:attributes][:frequency]).to eq(@sub_1.frequency)
+      expect(parsed[:data][:attributes][:teas]).to eq(@sub_1.tea_list)
     end
   end
 end

@@ -3,7 +3,7 @@ class SubscriptionSerializer
   attribute :customer_id do |object|
     object.customer.id
   end
-  attributes :title, 
+  attributes :title,
              :price,
              :status,
              :frequency

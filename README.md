@@ -49,24 +49,39 @@ Example response:
 
 Cancel a customer's tea subscription
 
-PATCH '/api/v1/subscriptions'
+PATCH '/api/v1/subscriptions/id'
+
+*(The id in the route above is the subscription id)*
 
 JSON Body:
 ```
 {
-  "subscription_id":"integer",
   "customer_id":"integer",
-  "status":"inactive"
+  "status":"cancelled"
 }
 ```
 Example response:
 ```
 {
-  "data": {
-    "subscription_id":"integer",
-    "customer_id":"integer",
-    "status":"inactive"
-  }
+    "data": {
+        "id": "27",
+        "type": "subscription",
+        "attributes": {
+            "customer_id": 115,
+            "title": "Grandma's Tea",
+            "price": 17.0,
+            "status": "cancelled",
+            "frequency": "monthly",
+            "teas": [
+                {
+                    "tea_id": 14
+                },
+                {
+                    "tea_id": 8
+                }
+            ]
+        }
+    }
 }
 ```
 ---
