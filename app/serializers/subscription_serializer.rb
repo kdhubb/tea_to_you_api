@@ -1,4 +1,4 @@
-class SubscriptionsSerializer
+class SubscriptionSerializer
   include JSONAPI::Serializer
   attribute :customer_id do |object|
     object.customer.id

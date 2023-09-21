@@ -29,4 +29,4 @@
 /config/master.key
 
 # Ignore simplecov coverage files
-/coverage/*
+/coverage
