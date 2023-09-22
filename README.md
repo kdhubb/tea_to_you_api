@@ -1,3 +1,31 @@
+# Tea to You
+
+This is a RESTful API service for a tea subscription application. In this MVP, there are three endpoints exposed, one to subscribe a customer to a new tea subscription, one to cancel a subscription, and one to get all of a customer's subscriptions. This project was completed as a "take home" practice project as part of the Mod 4 curriculum at Turing School of Software and Design. 
+
+---
+
+### Tech Stack
+Ruby, Rails, ActiveRecord, PostgreSQL, SimpleCov, RSpec
+<div align="left">  
+    <a href="https://www.postgresql.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/postgresql-original-wordmark.svg" alt="PostgreSQL" height="50" /></a>  
+    <a href="https://rubyonrails.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/rails-original-wordmark.svg" alt="Rails" height="50" /></a>  
+    <a href="https://www.ruby-lang.org/en/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/ruby-original-wordmark.svg" alt="CSS3" height="50" /></a>   
+</div>
+
+--- 
+### Usage
+
+To Setup Install:
+- Ruby 3.2.2
+- Rails 7.0.7
+- Fork and clone
+
+Then run:
+- `bundle install`
+- `rails db:{create,migrate,seed}`
+
+
+
 ## JSON Contract 
 
 Subscribe a customer to a tea subscription
